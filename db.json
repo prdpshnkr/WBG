@@ -97,6 +97,16 @@
         "birdcount": 4
       },
       "id": 16
+    },
+    {
+      "data": {
+        "location": "KRS",
+        "longitude": "55.36",
+        "lattitude": "85.54",
+        "bird": "Teal",
+        "birdcount": 4
+      },
+      "id": 17
     }
   ],
   "posts": [

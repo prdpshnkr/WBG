@@ -1,10 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./Header.css";
 
 function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
+        <a className="logo">
+          <Link className="nav-link active" aria-current="page" to="/">
+            <i className="fas fa-dove"></i>
+          </Link>
+        </a>
         <a className="navbar-brand" href="#">
           <Link className="nav-link active" aria-current="page" to="/">
             eBirder
@@ -29,7 +35,11 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/record">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/record"
+              >
                 Record
               </Link>
             </li>

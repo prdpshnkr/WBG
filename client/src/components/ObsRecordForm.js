@@ -40,11 +40,12 @@ const ObsRecordForm = () => {
       })}
       onSubmit={(values, { setSubmitting }) => {
         addObsData(values);
+        setSubmitting(false);
       }}
     >
       <Form>
         <div style={{ padding: "1rem" }}>
-          <h3 className="mt-2 mb-4">Record Your Observation</h3>
+          <h3 className="mt-2 mb-4 text-info">Record Your Observation</h3>
           <label htmlFor="location">Place</label>
           <div className="mb-3  ">
             <Field name="location" type="text" placeholder="Enter Place" />
