@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -7,26 +7,34 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import MyObservations from "./components/MyObservations";
 import Hotspots from "./components/Hotspots";
-
+import { SearchContext } from "./context/SearchContext";
 
 function App() {
+  const [add, setAdd] = useState("");
+  const [coords, setCoords] = useState({});
+
+  console.log(add);
+  console.log(coords);
+
   return (
     <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/record">
-          <ObsRecordForm />
-        </Route>
-        <Route exact path="/observations">
-          <MyObservations />
-        </Route>
-        <Route exact path="/hotspots">
-          <Hotspots />
-        </Route>
-      </Switch>
+      <SearchContext.Provider value={{ add, setAdd, coords, setCoords }}>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/record">
+            <ObsRecordForm />
+          </Route>
+          <Route exact path="/observations">
+            <MyObservations />
+          </Route>
+          <Route exact path="/hotspots">
+            <Hotspots />
+          </Route>
+        </Switch>
+      </SearchContext.Provider>
     </div>
   );
 }

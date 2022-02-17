@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -6,8 +6,11 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./Header.css";
+import {SearchContext} from '../context/SearchContext';
 
 function Header() {
+
+  const {setAdd, setCoords} = useContext(SearchContext);  
   const [address, setAddress] = useState("");
   const [coordinates, setCordinates] = useState({
     lat: null,
@@ -22,6 +25,8 @@ function Header() {
     console.log(ll);
     setAddress(value);
     setCordinates(ll);
+    setAdd(value);
+    setCoords(ll);
   };
 
   console.log(address);
