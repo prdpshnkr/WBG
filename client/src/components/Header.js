@@ -154,7 +154,7 @@ function Header() {
                 aria-current="page"
                 to="/hotspots"
               >
-                Search Hotspots
+                Find
               </Link>
             </button>
           </form>

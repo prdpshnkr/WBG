@@ -51,7 +51,7 @@ const ObsRecordForm = () => {
             <Field name="location" type="text" placeholder="Enter Place" />
             <ErrorMessage name="location" />
           </div>
-          <label htmlFor="longitude">Longitude and Lattitude</label>
+          <label htmlFor="longitude">Location Details / Co ordinates</label>
           <div className="mb-3">
             <Field name="longitude" type="text" placeholder="Enter Longitude" />
             <ErrorMessage name="longitude" />{" "}
@@ -62,7 +62,7 @@ const ObsRecordForm = () => {
             />
             <ErrorMessage name="lattitude" />
           </div>
-          <label htmlFor="bird">Bird</label>
+          <label htmlFor="bird">Bird Details</label>
           <div className="mb-3">
             <Field name="bird" type="bird" placeholder="Enter Bird name" />
             <ErrorMessage name="bird" />{" "}
