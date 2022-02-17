@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SearchContext } from "../context/SearchContext";
 import * as Yup from "yup";
@@ -9,9 +9,9 @@ import MapDetails from "./MapDetails";
 
 function Hotspots() {
   const { add, coords } = useContext(SearchContext);
-
-  console.log(add);
-  console.log(coords);
+  const [loading, setLoading] = useState(false);
+  const [eventData, setEventData] = useState([]);
+  const [hotspot, setHotspot] = useState([]);
 
   const addObsData = async (data) => {
     const successNotify = () => toast("Record Successfully Added!");
@@ -27,6 +27,54 @@ function Hotspots() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const fetchSpeciesInLocation = async () => {
+    setLoading(true);
+    const headers = {
+      "X-eBirdApiToken": "bbrc0dgm44c7",
+    };
+
+    await axios
+      .get(
+        `https://api.ebird.org/v2/data/obs/geo/recent?lat=${coords.lat}&lng=${coords.lng}`,
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {
+        setEventData(res);
+        setLoading(false);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(coords.lat);
+  };
+
+  const fetchNearbyHotspots = async () => {
+    setLoading(true);
+    const headers = {
+      "X-eBirdApiToken": "bbrc0dgm44c7",
+    };
+
+    await axios
+      .get(
+        `https://api.ebird.org/v2/ref/hotspot/geo?lat=${coords.lat}&lng=${coords.lng}&fmt=json`,
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {
+        setHotspot(res);
+        setLoading(false);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(coords.lat);
   };
 
   return (
@@ -92,7 +140,20 @@ function Hotspots() {
               <button type="submit" className="btn btn-outline-info">
                 Record
               </button>{" "}
-              <button className="btn btn-outline-info">Add Another</button>
+              <button
+                type="submit"
+                onClick={() => fetchSpeciesInLocation()}
+                className="btn btn-outline-info"
+              >
+                Fetch Spp Details
+              </button>
+              <button
+                type="submit"
+                onClick={() => fetchNearbyHotspots()}
+                className="btn btn-outline-info"
+              >
+                Fetch Hotspots
+              </button>
               <ToastContainer
                 position="top-center"
                 autoClose={2000}

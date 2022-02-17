@@ -16,3 +16,8 @@ body {
   position: relative;
   padding-left: 3rem;
 }
+
+.location-icon {
+  font-size: 2rem;
+  color: red;
+}
