@@ -11,7 +11,7 @@ function Hotspots() {
   const { add, coords } = useContext(SearchContext);
   const [loading, setLoading] = useState(false);
   const [eventData, setEventData] = useState([]);
-  const [hotspot, setHotspot] = useState([]);
+  const [hotspots, setHotspots] = useState([]);
 
   const addObsData = async (data) => {
     const successNotify = () => toast("Record Successfully Added!");
@@ -67,9 +67,9 @@ function Hotspots() {
         }
       )
       .then((res) => {
-        setHotspot(res);
+        setHotspots(res.data);
         setLoading(false);
-        console.log(res);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -170,7 +170,7 @@ function Hotspots() {
         </>
       </div>
       <div className="col-7">
-        <MapDetails />
+        <MapDetails hotspots={hotspots} />
       </div>
     </div>
   );

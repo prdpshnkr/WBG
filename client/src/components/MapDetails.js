@@ -1,11 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
-import { SearchContext } from "../context/SearchContext";
+import LocationInfoBox from "./LocationInfoBox";
 
+const MapDetails = ({ hotspots, center, zoom }) => {
 
-const MapDetails = ({ center, zoom }) => {
-  const { coords } = useContext(SearchContext);
+  const [locationInfo, setLocationInfo] = useState(null);
+
+  const markers = hotspots && hotspots.map((hotspot) => {
+    return (
+      <LocationMarker
+        lat={hotspot.lat}
+        lng={hotspot.lng}
+        onClick={() =>
+          setLocationInfo({
+            id: hotspot.locId,
+            title: hotspot.locName,
+          })
+        }
+      />
+    );
+  });
+
   return (
     <div className="map">
       <h3 className="mb-3 text-info">Map Details</h3>
@@ -14,8 +30,9 @@ const MapDetails = ({ center, zoom }) => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        <LocationMarker lat={center.lat} lng={center.lng} />
+        {markers}
       </GoogleMapReact>
+      {locationInfo && <LocationInfoBox info={locationInfo} />}
     </div>
   );
 };
@@ -25,7 +42,7 @@ MapDetails.defaultProps = {
     lat: 11.99293091826567,
     lng: 76.37999237775038,
   },
-  zoom: 10,
+  zoom: 6,
 };
 
 export default MapDetails;

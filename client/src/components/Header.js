@@ -21,16 +21,11 @@ function Header() {
     console.log(value);
     const results = await geocodeByAddress(value);
     const ll = await getLatLng(results[0]);
-    console.log(results);
-    console.log(ll);
     setAddress(value);
     setCordinates(ll);
     setAdd(value);
     setCoords(ll);
   };
-
-  console.log(address);
-  console.log(coordinates);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
