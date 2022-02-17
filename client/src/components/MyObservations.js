@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function MyObservations() {
+  const URL = "http://localhost:3004/users"
   const [data, setData] = useState([]);
   const [birdDetails, setBirdDetails] = useState([]);
 
@@ -28,7 +29,7 @@ function MyObservations() {
 
   const editBirdDetails = (data) => {
     axios
-      .delete(`http://localhost:3004/users/${data}`)
+      .delete(`${URL}/${data}`)
       .then((result) => {
         console.log(result.data);
         setData(result.data);
@@ -42,7 +43,7 @@ function MyObservations() {
     const deleteNotify = () => toast("Record Successfully Deleted!");
 
     axios
-      .delete(`http://localhost:3004/users/${data}`)
+      .delete(`${URL}/${data}`)
       .then((result) => {
         addObsData();
         deleteNotify();
@@ -54,7 +55,7 @@ function MyObservations() {
 
   const addObsData = () => {
     axios
-      .get("http://localhost:3004/users")
+      .get(`${URL}`)
       .then((result) => {
         console.log(result.data);
         setData(result.data);
@@ -69,7 +70,7 @@ function MyObservations() {
   }, []);
 
   return (
-    <div className="row p-2">
+    <div className="row" style={{ padding: "0 6rem" }}>
       <div className="col-9 border-end border-info">
         <h3 className="mb-3 text-info">My Recorded Observations</h3>
         <div className="d-inline">
@@ -173,7 +174,7 @@ function MyObservations() {
       </div>
       <ToastContainer
         position="top-center"
-        autoClose={1000}
+        autoClose={2000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick

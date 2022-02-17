@@ -6,6 +6,7 @@ import ObsRecordForm from "./components/ObsRecordForm";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import MyObservations from "./components/MyObservations";
+import Hotspots from "./components/Hotspots";
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route exact path="/observations">
           <MyObservations />
+        </Route>
+        <Route exact path="/hotspots">
+          <Hotspots />
         </Route>
       </Switch>
     </div>

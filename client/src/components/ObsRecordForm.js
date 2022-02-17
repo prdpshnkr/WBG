@@ -44,7 +44,7 @@ const ObsRecordForm = () => {
       }}
     >
       <Form>
-        <div style={{ padding: "1rem" }}>
+        <div style={{ padding: "0 6rem" }}>
           <h3 className="mt-2 mb-4 text-info">Record Your Observation</h3>
           <label htmlFor="location">Place</label>
           <div className="mb-3  ">
@@ -74,7 +74,7 @@ const ObsRecordForm = () => {
           </button>
           <ToastContainer
             position="top-center"
-            autoClose={1000}
+            autoClose={2000}
             hideProgressBar
             newestOnTop={false}
             closeOnClick

@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng,
+} from "react-places-autocomplete";
 import "./Header.css";
 
 function Header() {
+  const [address, setAddress] = useState("");
+  const [coordinates, setCordinates] = useState({
+    lat: null,
+    lng: null,
+  });
+
+  const handleSelect = async (value) => {
+    console.log(value);
+    const results = await geocodeByAddress(value);
+    const ll = await getLatLng(results[0]);
+    console.log(results);
+    console.log(ll);
+    setAddress(value);
+    setCordinates(ll);
+  };
+
+  console.log(address);
+  console.log(coordinates);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -64,14 +88,69 @@ function Header() {
             </li>
           </ul>
           <form className="d-flex">
-            <input
+            {/* <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
-            />
+              value={searchInput}
+              onChange={handleSearchInput}
+            /> */}
+            <PlacesAutocomplete
+              value={address}
+              onChange={setAddress}
+              onSelect={handleSelect}
+            >
+              {({
+                getInputProps,
+                suggestions,
+                getSuggestionItemProps,
+                loading,
+              }) => (
+                <div>
+                  <input
+                    {...getInputProps({
+                      placeholder: "Search Places ...",
+                      className: "location-search-input",
+                    })}
+                    className="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                  <div className="autocomplete-dropdown-container">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map((suggestion) => {
+                      const className = suggestion.active
+                        ? "suggestion-item--active"
+                        : "suggestion-item";
+                      // inline style for demonstration purpose
+                      const style = suggestion.active
+                        ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                        : { backgroundColor: "#ffffff", cursor: "pointer" };
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className,
+                            style,
+                          })}
+                        >
+                          <span>{suggestion.description}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </PlacesAutocomplete>{" "}
             <button className="btn btn-outline-success" type="submit">
-              Search
+              <Link
+                className="search-link"
+                aria-current="page"
+                to="/hotspots"
+              >
+                Search Hotspots
+              </Link>
             </button>
           </form>
         </div>

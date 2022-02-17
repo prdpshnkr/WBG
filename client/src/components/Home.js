@@ -9,7 +9,7 @@ function Home() {
       <div className="content">
         <h1>eBirder</h1>
         <h3>Welcome to eBirder</h3>
-        <p>Record and maintain your birding checklists here</p>
+        <p>Create and maintain your birding checklists here</p>
         <a>
           <button>
             <Link className="text-light" aria-current="page" to="/record">

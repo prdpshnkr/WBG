@@ -14,7 +14,7 @@
         "location": "ytyt",
         "longitude": "6565",
         "lattitude": "556",
-        "bird": "ertg"
+        "bird": "parrot"
       },
       "id": 4
     },
@@ -23,7 +23,7 @@
         "location": "yuiyf",
         "longitude": "6565",
         "lattitude": "556",
-        "bird": "tyjf",
+        "bird": "crane",
         "birdcount": 1
       },
       "id": 9
@@ -33,37 +33,17 @@
         "location": "xddrg",
         "longitude": "6565",
         "lattitude": "556",
-        "bird": "yufgj",
+        "bird": "goose",
         "birdcount": 1
       },
       "id": 10
     },
     {
       "data": {
-        "location": "fgth",
-        "longitude": "6565",
-        "lattitude": "556",
-        "bird": "tyuty",
-        "birdcount": 1
-      },
-      "id": 11
-    },
-    {
-      "data": {
-        "location": "tygjyf",
-        "longitude": "6565",
-        "lattitude": "556",
-        "bird": "tudf",
-        "birdcount": 1
-      },
-      "id": 12
-    },
-    {
-      "data": {
         "location": "io;gyf",
         "longitude": "6565",
         "lattitude": "556",
-        "bird": "yuuui",
+        "bird": "white-eye",
         "birdcount": 1
       },
       "id": 13
@@ -73,7 +53,7 @@
         "location": "xddf",
         "longitude": "6565",
         "lattitude": "556",
-        "bird": "yuuui",
+        "bird": "red wattled lapwing",
         "birdcount": 1
       },
       "id": 14
