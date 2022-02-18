@@ -1,7 +1,6 @@
 // import React, { PureComponent } from "react";
 // import "./BirdsList.css";
 // import AsyncSelect from "react-select/async";
-// import BirdContext from "../context/BirdContext";
 
 // export class BirdsList extends PureComponent {
 //   state = {
@@ -48,15 +47,18 @@
 
 // export default BirdsList;
 
-import React, { useState } from "react";
-import "./BirdsList.css";
+import React, { useState, useContext } from "react";
 import AsyncSelect from "react-select/async";
+import BirdContext from "../context/BirdContext";
 
 const BirdsList = () => {
+  const { setBird } = useContext(BirdContext);
+
   const [selectedBird, setSelectedBird] = useState("");
 
   const onChange = (bird) => {
     setSelectedBird(bird);
+    setBird(bird);
   };
 
   const loadOptions = async (inputText, callback) => {
@@ -68,7 +70,17 @@ const BirdsList = () => {
     callback(
       json.map((i) => ({
         label: i.comName,
-        value: i.sciName,
+        sciName: i.sciName,
+        speciesCode: i.speciesCode,
+        category: i.category,
+        taxonOrder: i.taxonOrder,
+        bandingCodes: i.bandingCodes,
+        comNameCodes: i.comNameCodes,
+        sciNameCodes: i.sciNameCodes,
+        order: i.order,
+        familyCode: i.familyCode,
+        familyComName: i.familyComName,
+        familySciName: i.familySciName,
       }))
     );
   };
@@ -81,6 +93,7 @@ const BirdsList = () => {
         placeholder={"Search and select bird"}
         loadOptions={loadOptions}
       />
+      <div></div>
     </div>
   );
 };

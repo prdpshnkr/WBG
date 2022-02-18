@@ -10,9 +10,9 @@ import {SearchContext} from '../context/SearchContext';
 
 function Header() {
 
+  const {setAdd, setCoords} = useContext(SearchContext);  
   const history = useHistory();
 
-  const {setAdd, setCoords} = useContext(SearchContext);  
   const [address, setAddress] = useState("");
   const [coordinates, setCordinates] = useState({
     lat: null,

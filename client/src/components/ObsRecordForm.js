@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BirdsList from "./BirdsList";
+import PlacesList from "./PlacesList";
+
 
 const ObsRecordForm = () => {
   const addObsData = async (data) => {
@@ -22,7 +24,7 @@ const ObsRecordForm = () => {
 
   return (
     <div className="row">
-      <div className="col-5">
+      <div className="col-5 border-end border-info">
         <Formik
           initialValues={{ location: "", longitude: "", lattitude: "" }}
           validationSchema={Yup.object({
@@ -98,10 +100,13 @@ const ObsRecordForm = () => {
           </Form>
         </Formik>
       </div>
-      <div className="col-7">
-        <div className="col-5">
-          <BirdsList />
-        </div>
+      <div className="col-4 border-end border-info">
+        <h3 className="mt-2 mb-4 text-info">Search Places</h3>
+        <PlacesList />
+      </div>
+      <div className="col-3">
+        <h3 className="mt-2 mb-4 text-info">Search Birds</h3>
+        <BirdsList />
       </div>
     </div>
   );

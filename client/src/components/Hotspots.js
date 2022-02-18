@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import MapDetails from "./MapDetails";
-import BirdContext from "../context/BirdContext";
+// import BirdContext from "../context/BirdContext";
 
 
 function Hotspots() {

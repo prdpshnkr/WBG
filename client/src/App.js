@@ -8,19 +8,21 @@ import Home from "./components/Home";
 import MyObservations from "./components/MyObservations";
 import Hotspots from "./components/Hotspots";
 import { SearchContext } from "./context/SearchContext";
-import { BirdProvider } from "./context/BirdContext";
+import BirdContext  from "./context/BirdContext";
 
 function App() {
   const [add, setAdd] = useState("");
   const [coords, setCoords] = useState({});
 
-  console.log(add);
+  const [bird, setBird] = useState("");
+
+  console.log(bird);
   console.log(coords);
 
   return (
     <div className="App">
       <SearchContext.Provider value={{ add, setAdd, coords, setCoords }}>
-        <BirdProvider>
+        <BirdContext.Provider value={{bird, setBird}}>
           <Header />
           <Switch>
             <Route exact path="/">
@@ -36,7 +38,7 @@ function App() {
               <Hotspots />
             </Route>
           </Switch>
-        </BirdProvider>
+        </BirdContext.Provider>
       </SearchContext.Provider>
     </div>
   );
