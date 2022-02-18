@@ -16,6 +16,8 @@ const MapDetails = ({ hotspots, center, zoom }) => {
           setLocationInfo({
             id: hotspot.locId,
             title: hotspot.locName,
+            lat: hotspot.lat,
+            lng: hotspot.lng
           })
         }
       />

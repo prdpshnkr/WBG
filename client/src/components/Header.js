@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -9,6 +9,8 @@ import "./Header.css";
 import {SearchContext} from '../context/SearchContext';
 
 function Header() {
+
+  const history = useHistory();
 
   const {setAdd, setCoords} = useContext(SearchContext);  
   const [address, setAddress] = useState("");
@@ -25,6 +27,7 @@ function Header() {
     setCordinates(ll);
     setAdd(value);
     setCoords(ll);
+    history.push("/hotspots");
   };
 
   return (

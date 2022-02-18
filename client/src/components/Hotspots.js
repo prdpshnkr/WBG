@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import MapDetails from "./MapDetails";
+import BirdContext from "../context/BirdContext";
+
 
 function Hotspots() {
   const { add, coords } = useContext(SearchContext);
@@ -79,7 +81,7 @@ function Hotspots() {
 
   return (
     <div className="row" style={{ padding: "0 6rem" }}>
-      <div className="col-5 border-end border-info">
+      <div className="col-4 border-end border-info">
         <>
           <h3 className="mb-3 text-info">Location Details</h3>
           {add ? (
@@ -169,7 +171,7 @@ function Hotspots() {
           </Formik>
         </>
       </div>
-      <div className="col-7">
+      <div className="col-8">
         <MapDetails hotspots={hotspots} />
       </div>
     </div>
