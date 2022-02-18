@@ -79,26 +79,28 @@ function MapDisplay() {
       <br />
       <br />
 
-      <div className="p-3">
-        <p>
-          <b>
-            <i>Lattitude : </i>
-          </b>{" "}
-          {coordinates.lat}
-        </p>
-        <p>
-          <b>
-            <i>Longitude : </i>
-          </b>{" "}
-          {coordinates.lng}
-        </p>
-        <p>
-          <b>
-            <i>Address : </i>
-          </b>{" "}
-          {address}
-        </p>
-      </div>
+      {coordinates && (
+        <div className="p-3">
+          <p>
+            <b>
+              <i>Lattitude : </i>
+            </b>{" "}
+            {coordinates.lat}
+          </p>
+          <p>
+            <b>
+              <i>Longitude : </i>
+            </b>{" "}
+            {coordinates.lng}
+          </p>
+          <p>
+            <b>
+              <i>Address : </i>
+            </b>{" "}
+            {address}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

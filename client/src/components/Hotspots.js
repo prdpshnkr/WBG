@@ -6,10 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import MapDetails from "./MapDetails";
-// import BirdContext from "../context/BirdContext";
-
+import BirdsList from "./BirdsList";
+import BirdContext from "../context/BirdContext";
 
 function Hotspots() {
+  const { bird } = useContext(BirdContext);
   const { add, coords } = useContext(SearchContext);
   const [loading, setLoading] = useState(false);
   const [eventData, setEventData] = useState([]);
@@ -29,30 +30,6 @@ function Hotspots() {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const fetchSpeciesInLocation = async () => {
-    setLoading(true);
-    const headers = {
-      "X-eBirdApiToken": "bbrc0dgm44c7",
-    };
-
-    await axios
-      .get(
-        `https://api.ebird.org/v2/data/obs/geo/recent?lat=${coords.lat}&lng=${coords.lng}`,
-        {
-          headers: headers,
-        }
-      )
-      .then((res) => {
-        setEventData(res);
-        setLoading(false);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(coords.lat);
   };
 
   const fetchNearbyHotspots = async () => {
@@ -118,7 +95,7 @@ function Hotspots() {
             }}
             validationSchema={Yup.object({
               bird: Yup.string()
-                .max(20, "Must be 20 characters or less")
+                .max(50, "Must be 50 characters or less")
                 .required("Required"),
               birdcount: Yup.number().positive().integer().required("Required"),
             })}
@@ -128,11 +105,29 @@ function Hotspots() {
             }}
           >
             <Form>
-              <label htmlFor="bird">Bird Details</label>
               <div className="mb-3">
-                <Field name="bird" type="bird" placeholder="Enter Bird name" />
-                <ErrorMessage name="bird" />{" "}
+                <BirdsList />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="bird">Bird Details</label>
                 <Field
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  name="bird"
+                  type="bird"
+                  placeholder="Enter Bird name"
+                />
+                <ErrorMessage name="bird" />{" "}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="bird">Bird Count</label>
+                <Field
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
                   name="birdcount"
                   type="number"
                   placeholder="Bird Count"
@@ -142,13 +137,6 @@ function Hotspots() {
               <button type="submit" className="btn btn-outline-info">
                 Record
               </button>{" "}
-              <button
-                type="submit"
-                onClick={() => fetchSpeciesInLocation()}
-                className="btn btn-outline-info"
-              >
-                Fetch Spp Details
-              </button>
               <button
                 type="submit"
                 onClick={() => fetchNearbyHotspots()}
@@ -170,6 +158,31 @@ function Hotspots() {
             </Form>
           </Formik>
         </>
+        <div className="row">
+          {bird && (
+            <div className="p-3">
+              <strong>Bird Details</strong>
+              <p>
+                <b>
+                  <i>Label : </i>
+                </b>{" "}
+                {bird.label}
+              </p>
+              <p>
+                <b>
+                  <i>Family Common Name : </i>
+                </b>{" "}
+                {bird.familyComName}
+              </p>
+              <p>
+                <b>
+                  <i>Scientific Name : </i>
+                </b>{" "}
+                {bird.sciName}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
       <div className="col-8">
         <MapDetails hotspots={hotspots} />

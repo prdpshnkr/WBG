@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
@@ -6,9 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BirdsList from "./BirdsList";
 import PlacesList from "./PlacesList";
-
+import BirdContext from "../context/BirdContext";
 
 const ObsRecordForm = () => {
+  const { bird } = useContext(BirdContext);
+  
   const addObsData = async (data) => {
     const successNotify = () => toast("Record Successfully Added!");
     await axios
@@ -32,10 +34,10 @@ const ObsRecordForm = () => {
               .max(50, "Must be 50 characters or less")
               .required("Required"),
             longitude: Yup.string()
-              .max(5, "Must be 5 characters or less")
+              .max(12, "Must be 12 characters or less")
               .required("Required"),
             lattitude: Yup.string()
-              .max(5, "Must be 5 characters or less")
+              .max(12, "Must be 12 characters or less")
               .required("Required"),
             bird: Yup.string()
               .max(50, "Must be 50 characters or less")
@@ -73,7 +75,6 @@ const ObsRecordForm = () => {
               <label htmlFor="bird">Bird Details</label>
               <div className="mb-3">
                 <Field name="bird" type="bird" placeholder="Enter Bird name" />
-                {/* <Field as={BirdsList} name="bird" type="bird" placeholder="Enter Bird name" /> */}
                 <ErrorMessage name="bird" />{" "}
                 <Field
                   name="birdcount"
@@ -107,6 +108,64 @@ const ObsRecordForm = () => {
       <div className="col-3">
         <h3 className="mt-2 mb-4 text-info">Search Birds</h3>
         <BirdsList />
+        {bird && (
+          <div className="p-3">
+            <p>
+              <b>
+                <i>Label : </i>
+              </b>{" "}
+              {bird.label}
+            </p>
+            <p>
+              <b>
+                <i>Category : </i>
+              </b>{" "}
+              {bird.category}
+            </p>
+            <p>
+              <b>
+                <i>Family Code : </i>
+              </b>{" "}
+              {bird.familyCode}
+            </p>
+            <p>
+              <b>
+                <i>Family Common Name : </i>
+              </b>{" "}
+              {bird.familyComName}
+            </p>
+            <p>
+              <b>
+                <i>Family Scientific Name : </i>
+              </b>{" "}
+              {bird.familySciName}
+            </p>
+            <p>
+              <b>
+                <i>Order : </i>
+              </b>{" "}
+              {bird.order}
+            </p>
+            <p>
+              <b>
+                <i>Scientific Name : </i>
+              </b>{" "}
+              {bird.sciName}
+            </p>
+            <p>
+              <b>
+                <i>Species Code : </i>
+              </b>{" "}
+              {bird.speciesCode}
+            </p>
+            <p>
+              <b>
+                <i>Taxonomical Order : </i>
+              </b>{" "}
+              {bird.taxonOrder}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

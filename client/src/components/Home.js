@@ -9,6 +9,7 @@ function Home() {
       <div className="content">
         <h1>eBirder</h1>
         <h3>Welcome to eBirder</h3>
+        <p>Cyour birding assist</p>
         <p>Create and maintain your birding checklists here</p>
         <a>
           <button>

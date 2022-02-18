@@ -6,11 +6,10 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./Header.css";
-import {SearchContext} from '../context/SearchContext';
+import { SearchContext } from "../context/SearchContext";
 
 function Header() {
-
-  const {setAdd, setCoords} = useContext(SearchContext);  
+  const { setAdd, setCoords } = useContext(SearchContext);
   const history = useHistory();
 
   const [address, setAddress] = useState("");
@@ -80,25 +79,12 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
-                Login
-              </a>
+              <Link className="nav-link active" aria-current="page" to="/hotspots">
+                Locate Hotspots
+              </Link>
             </li>
           </ul>
           <form className="d-flex">
-            {/* <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchInput}
-              onChange={handleSearchInput}
-            /> */}
             <PlacesAutocomplete
               value={address}
               onChange={setAddress}
@@ -147,11 +133,7 @@ function Header() {
               )}
             </PlacesAutocomplete>{" "}
             <button className="btn btn-outline-success" type="submit">
-              <Link
-                className="search-link"
-                aria-current="page"
-                to="/hotspots"
-              >
+              <Link className="search-link" aria-current="page" to="/hotspots">
                 Find
               </Link>
             </button>

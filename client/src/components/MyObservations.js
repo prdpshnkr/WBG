@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MapDetails from "./MapDetails";
 
 function MyObservations() {
-  const URL = "http://localhost:3004/users"
+  const URL = "http://localhost:3004/users";
   const [data, setData] = useState([]);
   const [birdDetails, setBirdDetails] = useState([]);
 
@@ -172,6 +173,9 @@ function MyObservations() {
           </div>
         )}
       </div>
+      {/* <div className="col-3">
+        <MapDetails />
+      </div> */}
       <ToastContainer
         position="top-center"
         autoClose={2000}
